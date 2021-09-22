@@ -48,7 +48,7 @@ try:
     n = int(input('Введіть порядок: '))
     move_max_el(n)
 except ValueError:
-    print("Помилка!")
+    print("Неправильний тип даних!")
 except Exception:
     print("Помилка!")
 
