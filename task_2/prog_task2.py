@@ -47,7 +47,7 @@ def move_max_el(n):
 try:
     n = int(input('Введіть порядок: '))
     move_max_el(n)
-except TypeError:
+except ValueError:
     print("Помилка!")
 except Exception:
     print("Помилка!")
