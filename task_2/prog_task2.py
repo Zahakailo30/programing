@@ -1,20 +1,25 @@
 import random
 def input_matrix():
-    n = int(input('Введіть порядок: '))
-    if (n % 2 == 0):
-        print("Введіть непарне число!")
-    elif (n < 0):
-        print("Введіть додатнє число!")
-    else:
-        matrix = []
-        for i in range(n):
-            matr = []
-            for j in range(n):
-                matr.append(int(input("Введіть елемент:\n")))
-            matrix.append(matr)
+    while True:
+        try:
+            n = int(input('Введіть порядок: '))
+            if (n % 2 == 0):
+                print("Введіть непарне число!")
+            elif (n < 0):
+                print("Введіть додатнє число!")
+            else:
+                matrix = []
+                for i in range(n):
+                    matr = []
+                    for j in range(n):
+                        matr.append(int(input("Введіть елемент:\n")))
+                    matrix.append(matr)
+                print_matrix(matrix)
+                break
+        except ValueError:
+            print("Неправильний тип!")
+    return matrix
 
-        print_matrix(matrix)
-        return matrix
 def print_matrix(matrix):
     k = len(matrix)
     for i in range(k):
@@ -22,6 +27,7 @@ def print_matrix(matrix):
             print(matrix[i][j], end=' ')
         print()
     print(' ')
+
 def move_max_el(matrix):
     i1 = 0
     j1 = 0
@@ -42,18 +48,19 @@ def move_max_el(matrix):
     print_matrix(matrix)
     return matrix
 
-try:
-    print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
-    P = int(input(""))
-    while (P == 1):
+
+print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
+P = int(input(""))
+while P:
+    if P == 1:
         matrix1 = input_matrix()
         move_max_el(matrix1)
         print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
         P = int(input(""))
-    if (P == 2):
+    elif P == 2:
         print("Роботу завершено")
-
-except ValueError:
-    print("Неправильний тип даних!")
-except Exception:
-    print("Помилка!")
+        break
+    elif P != 1 and P != 2:
+        print("Такої опції не існує!")
+        print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
+        P = int(input(""))
