@@ -1,24 +1,33 @@
 import random
-def input_matrix():
+def input_matrix(n):
+    while True:
+        try:
+            matrix = []
+            for i in range(n):
+                matr = []
+                for j in range(n):
+                    matr.append(int(input("Введіть елемент:\n")))
+                matrix.append(matr)
+            print_matrix(matrix)
+            break
+        except ValueError:
+            print("Неправильний тип!")
+    return matrix
+
+def input_number():
     while True:
         try:
             n = int(input('Введіть порядок: '))
             if (n % 2 == 0):
                 print("Введіть непарне число!")
+                continue
             elif (n < 0):
                 print("Введіть додатнє число!")
-            else:
-                matrix = []
-                for i in range(n):
-                    matr = []
-                    for j in range(n):
-                        matr.append(int(input("Введіть елемент:\n")))
-                    matrix.append(matr)
-                print_matrix(matrix)
-                break
+                continue
+            break
         except ValueError:
-            print("Неправильний тип!")
-    return matrix
+            print("Неправильний тип")
+    return n
 
 def print_matrix(matrix):
     k = len(matrix)
@@ -53,7 +62,8 @@ print("Оберіть опцію:\n 1 - виконати завдання \n 2 -
 P = int(input(""))
 while P:
     if P == 1:
-        matrix1 = input_matrix()
+        n = input_number()
+        matrix1 = input_matrix(n)
         move_max_el(matrix1)
         print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
         P = int(input(""))
