@@ -70,7 +70,7 @@ while P:
     elif P == 2:
         print("Роботу завершено")
         break
-    elif P != 1 and P != 2:
+    elif P > 2 or P < 0:
         print("Такої опції не існує!")
         print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
         P = int(input(""))
