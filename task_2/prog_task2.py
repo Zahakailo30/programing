@@ -1,29 +1,33 @@
 import random
 def input_matrix(n):
-    while True:
-        try:
-            matrix = []
-            for i in range(n):
-                matr = []
-                for j in range(n):
-                    matr.append(int(input("Введіть елемент:\n")))
-                matrix.append(matr)
-            print_matrix(matrix)
-            break
-        except ValueError:
-            print("Неправильний тип!")
+    matrix = []
+    for i in range(n):
+        matr = []
+        for j in range(n):
+            matr.append(input_number("Введіть елемент:"))
+        matrix.append(matr)
+    print_matrix(matrix)
+
     return matrix
 
-def input_number():
+
+def check_size(n):
+    if (n % 2 == 0):
+        k = input_number("Помилка!Введіть непарне число:")
+        n = check_size(k)
+        return n
+    elif (n < 0):
+        k = input_number("Помилка!Введіть додатнє :")
+        n = check_size(k)
+        return n
+    else:
+        return n
+
+def input_number(message):
     while True:
         try:
-            n = int(input('Введіть порядок: '))
-            if (n % 2 == 0):
-                print("Введіть непарне число!")
-                continue
-            elif (n < 0):
-                print("Введіть додатнє число!")
-                continue
+            print(message)
+            n = int(input())
             break
         except ValueError:
             print("Неправильний тип")
@@ -62,8 +66,8 @@ print("Оберіть опцію:\n 1 - виконати завдання \n 2 -
 P = int(input(""))
 while P:
     if P == 1:
-        n = input_number()
-        matrix1 = input_matrix(n)
+        n = input_number("Введіть порядок:")
+        matrix1 = input_matrix(check_size(n))
         move_max_el(matrix1)
         print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
         P = int(input(""))
@@ -74,3 +78,4 @@ while P:
         print("Такої опції не існує!")
         print("Оберіть опцію:\n 1 - виконати завдання \n 2 - завершити роботу \n", end=" ")
         P = int(input(""))
+
